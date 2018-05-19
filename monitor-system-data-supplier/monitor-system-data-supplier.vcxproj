@@ -149,6 +149,7 @@
     <ClInclude Include="ChallengeReply.h" />
     <ClInclude Include="Connected.h" />
     <ClInclude Include="Data.h" />
+    <ClInclude Include="EmptyDataBufferException.h" />
     <ClInclude Include="Hello.h" />
     <ClInclude Include="HelloChallenge.h" />
     <ClInclude Include="ReceivedMessage.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="ChallengeReply.cpp" />
     <ClCompile Include="Connected.cpp" />
     <ClCompile Include="Data.cpp" />
+    <ClCompile Include="EmptyDataBufferException.cpp" />
     <ClCompile Include="Hello.cpp" />
     <ClCompile Include="HelloChallenge.cpp" />
     <ClCompile Include="ReceivedMessage.cpp" />

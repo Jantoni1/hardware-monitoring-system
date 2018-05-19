@@ -67,14 +67,14 @@
       <Filter>Header Files\messages\send</Filter>
     </ClInclude>
     <ClInclude Include="ReceiveMessageFactory.h">
+      <Filter>Header Files\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyDataBufferException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="monitor-system-data-supplier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HelloChallenge.cpp">
@@ -103,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="ReceivedMessage.cpp">
       <Filter>Source Files\messages\receive</Filter>
+    </ClCompile>
+    <ClCompile Include="monitor-system-data-supplier.cpp">
+      <Filter>Source Files\messages</Filter>
+    </ClCompile>
+    <ClCompile Include="EmptyDataBufferException.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

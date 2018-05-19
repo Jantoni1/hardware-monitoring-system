@@ -14,13 +14,13 @@ public:
 	ReceiveMessageFactory() = default;
 	~ReceiveMessageFactory() = default;
 
-	ReceivedMessage* buildMessage(char* buffer, unsigned length);
+	ReceivedMessage* buildMessage(char* buffer, unsigned length) const;
 
 private:
 
-	AccessDenied* buildAccessDeniedMessage(char* buffer, unsigned length);
-	Connected* buildConnectedMessage(char* buffer, unsigned length);
-	HelloChallenge* buildHelloChallengeMessage(char* buffer, unsigned length);
+	AccessDenied* buildAccessDeniedMessage(char* buffer, unsigned length) const;
+	Connected* buildConnectedMessage(char* buffer, unsigned length) const;
+	HelloChallenge* buildHelloChallengeMessage(char* buffer, unsigned length) const;
 
 	const std::unordered_map<ReceivedMessageType, std::function<ReceivedMessage*(char*, unsigned)>> factory_object_types_ =
 	{ {ReceivedMessageType::hello_challenge, this->buildHelloChallengeMessage}

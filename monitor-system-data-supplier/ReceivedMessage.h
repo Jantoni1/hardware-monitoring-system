@@ -8,4 +8,5 @@ class ReceivedMessage
 public:
 	ReceivedMessage() = default;
 	virtual ~ReceivedMessage() = 0;
+	
 };
