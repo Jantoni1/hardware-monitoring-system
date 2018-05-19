@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\messages">
+      <UniqueIdentifier>{dd7b80e8-6741-4b35-bcc1-aea3d5032513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\messages">
+      <UniqueIdentifier>{42bece06-0f9b-4ae9-a928-8c52ac434c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\messages\send">
+      <UniqueIdentifier>{a5ea5cbc-2709-4140-b9f9-074d5474dfdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\messages\receive">
+      <UniqueIdentifier>{653528c3-ae14-46b6-86f4-404b4d2603b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\messages\send">
+      <UniqueIdentifier>{d25fc422-a015-44f7-80da-cb79773f7c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\messages\receive">
+      <UniqueIdentifier>{4ef5400b-14e7-43c5-8e33-885ffde9195a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AccessDenied.h">
+      <Filter>Header Files\messages\receive</Filter>
+    </ClInclude>
+    <ClInclude Include="Connected.h">
+      <Filter>Header Files\messages\receive</Filter>
+    </ClInclude>
+    <ClInclude Include="HelloChallenge.h">
+      <Filter>Header Files\messages\receive</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceivedMessage.h">
+      <Filter>Header Files\messages\receive</Filter>
+    </ClInclude>
+    <ClInclude Include="SendMessage.h">
+      <Filter>Header Files\messages\send</Filter>
+    </ClInclude>
+    <ClInclude Include="ChallengeReply.h">
+      <Filter>Header Files\messages\send</Filter>
+    </ClInclude>
+    <ClInclude Include="Data.h">
+      <Filter>Header Files\messages\send</Filter>
+    </ClInclude>
+    <ClInclude Include="Hello.h">
+      <Filter>Header Files\messages\send</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiveMessageFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="monitor-system-data-supplier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HelloChallenge.cpp">
+      <Filter>Source Files\messages\receive</Filter>
+    </ClCompile>
+    <ClCompile Include="Connected.cpp">
+      <Filter>Source Files\messages\receive</Filter>
+    </ClCompile>
+    <ClCompile Include="AccessDenied.cpp">
+      <Filter>Source Files\messages\receive</Filter>
+    </ClCompile>
+    <ClCompile Include="SendMessage.cpp">
+      <Filter>Source Files\messages\send</Filter>
+    </ClCompile>
+    <ClCompile Include="ChallengeReply.cpp">
+      <Filter>Source Files\messages\send</Filter>
+    </ClCompile>
+    <ClCompile Include="Data.cpp">
+      <Filter>Source Files\messages\send</Filter>
+    </ClCompile>
+    <ClCompile Include="Hello.cpp">
+      <Filter>Source Files\messages\send</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiveMessageFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceivedMessage.cpp">
+      <Filter>Source Files\messages\receive</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
