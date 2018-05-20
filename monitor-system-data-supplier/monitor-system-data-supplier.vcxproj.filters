@@ -1,114 +1,121 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6cede3c1-622a-4ef2-9207-046e1d3775c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{f9d04fc8-801c-44af-b802-dc8c242593a6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\messages">
-      <UniqueIdentifier>{dd7b80e8-6741-4b35-bcc1-aea3d5032513}</UniqueIdentifier>
+      <UniqueIdentifier>{92a63d88-27ef-4942-88b6-d13ca6f3bf22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\messages\sent">
+      <UniqueIdentifier>{b94fd14a-5710-41d2-b6f0-3dbfb97a74f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\messages\received">
+      <UniqueIdentifier>{a60ec422-7ae3-4d8c-b5fb-656d5be8b13b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\messages">
-      <UniqueIdentifier>{42bece06-0f9b-4ae9-a928-8c52ac434c2b}</UniqueIdentifier>
+      <UniqueIdentifier>{7aaeeced-5543-4e81-bfba-570c061cb5ad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\messages\send">
-      <UniqueIdentifier>{a5ea5cbc-2709-4140-b9f9-074d5474dfdd}</UniqueIdentifier>
+    <Filter Include="Source Files\messages\received">
+      <UniqueIdentifier>{62ac9652-f7d8-4003-bb2c-bdf3df4dfdad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\messages\receive">
-      <UniqueIdentifier>{653528c3-ae14-46b6-86f4-404b4d2603b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\messages\send">
-      <UniqueIdentifier>{d25fc422-a015-44f7-80da-cb79773f7c6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\messages\receive">
-      <UniqueIdentifier>{4ef5400b-14e7-43c5-8e33-885ffde9195a}</UniqueIdentifier>
+    <Filter Include="Source Files\messages\sent">
+      <UniqueIdentifier>{48515417-ca58-47ac-bf52-18d730af1129}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AccessDenied.h">
-      <Filter>Header Files\messages\receive</Filter>
-    </ClInclude>
-    <ClInclude Include="Connected.h">
-      <Filter>Header Files\messages\receive</Filter>
-    </ClInclude>
-    <ClInclude Include="HelloChallenge.h">
-      <Filter>Header Files\messages\receive</Filter>
-    </ClInclude>
-    <ClInclude Include="ReceivedMessage.h">
-      <Filter>Header Files\messages\receive</Filter>
-    </ClInclude>
-    <ClInclude Include="SendMessage.h">
-      <Filter>Header Files\messages\send</Filter>
-    </ClInclude>
-    <ClInclude Include="ChallengeReply.h">
-      <Filter>Header Files\messages\send</Filter>
-    </ClInclude>
-    <ClInclude Include="Data.h">
-      <Filter>Header Files\messages\send</Filter>
-    </ClInclude>
-    <ClInclude Include="Hello.h">
-      <Filter>Header Files\messages\send</Filter>
-    </ClInclude>
-    <ClInclude Include="ReceiveMessageFactory.h">
-      <Filter>Header Files\messages</Filter>
-    </ClInclude>
-    <ClInclude Include="EmptyDataBufferException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\monitor-system-data-supplier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HelloChallenge.cpp">
-      <Filter>Source Files\messages\receive</Filter>
-    </ClCompile>
-    <ClCompile Include="Connected.cpp">
-      <Filter>Source Files\messages\receive</Filter>
-    </ClCompile>
-    <ClCompile Include="AccessDenied.cpp">
-      <Filter>Source Files\messages\receive</Filter>
-    </ClCompile>
-    <ClCompile Include="SendMessage.cpp">
-      <Filter>Source Files\messages\send</Filter>
-    </ClCompile>
-    <ClCompile Include="ChallengeReply.cpp">
-      <Filter>Source Files\messages\send</Filter>
-    </ClCompile>
-    <ClCompile Include="Data.cpp">
-      <Filter>Source Files\messages\send</Filter>
-    </ClCompile>
-    <ClCompile Include="Hello.cpp">
-      <Filter>Source Files\messages\send</Filter>
-    </ClCompile>
-    <ClCompile Include="ReceiveMessageFactory.cpp">
+    <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReceivedMessage.cpp">
-      <Filter>Source Files\messages\receive</Filter>
-    </ClCompile>
-    <ClCompile Include="monitor-system-data-supplier.cpp">
+    <ClCompile Include="src\messages\message_received_factory.cpp">
       <Filter>Source Files\messages</Filter>
     </ClCompile>
-    <ClCompile Include="EmptyDataBufferException.cpp">
+    <ClCompile Include="src\messages\received\access_denied.cpp">
+      <Filter>Source Files\messages\received</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\received\connected.cpp">
+      <Filter>Source Files\messages\received</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\received\hello_challenge.cpp">
+      <Filter>Source Files\messages\received</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\received\message_received.cpp">
+      <Filter>Source Files\messages\received</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\sent\challenge_reply.cpp">
+      <Filter>Source Files\messages\sent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\empty_data_buffer_exception.cpp">
+      <Filter>Source Files\messages</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\sent\message_sent.cpp">
+      <Filter>Source Files\messages\sent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\corrupted_message_exception.cpp">
+      <Filter>Source Files\messages</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\sent\hello.cpp">
+      <Filter>Source Files\messages\sent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\sent\data.cpp">
+      <Filter>Source Files\messages\sent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\socket_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\empty_data_buffer_exception.h">
+      <Filter>Header Files\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\message_received_factory.h">
+      <Filter>Header Files\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\received\access_denied.h">
+      <Filter>Header Files\messages\received</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\received\connected.h">
+      <Filter>Header Files\messages\received</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\received\hello_challenge.h">
+      <Filter>Header Files\messages\received</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\received\message_received.h">
+      <Filter>Header Files\messages\received</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\sent\challenge_reply.h">
+      <Filter>Header Files\messages\sent</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\sent\message_sent.h">
+      <Filter>Header Files\messages\sent</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\corrupted_message_exception.h">
+      <Filter>Header Files\messages</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\sent\hello.h">
+      <Filter>Header Files\messages\sent</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\sent\data.h">
+      <Filter>Header Files\messages\sent</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\socket_controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

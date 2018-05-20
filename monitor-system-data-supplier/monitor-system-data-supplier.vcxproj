@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -88,10 +90,14 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,40 +148,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AccessDenied.h" />
-    <ClInclude Include="ChallengeReply.h" />
-    <ClInclude Include="Connected.h" />
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="EmptyDataBufferException.h" />
-    <ClInclude Include="Hello.h" />
-    <ClInclude Include="HelloChallenge.h" />
-    <ClInclude Include="ReceivedMessage.h" />
-    <ClInclude Include="ReceiveMessageFactory.h" />
-    <ClInclude Include="SendMessage.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AccessDenied.cpp" />
-    <ClCompile Include="ChallengeReply.cpp" />
-    <ClCompile Include="Connected.cpp" />
-    <ClCompile Include="Data.cpp" />
-    <ClCompile Include="EmptyDataBufferException.cpp" />
-    <ClCompile Include="Hello.cpp" />
-    <ClCompile Include="HelloChallenge.cpp" />
-    <ClCompile Include="ReceivedMessage.cpp" />
-    <ClCompile Include="monitor-system-data-supplier.cpp" />
-    <ClCompile Include="ReceiveMessageFactory.cpp" />
-    <ClCompile Include="SendMessage.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="src\messages\corrupted_message_exception.cpp" />
+    <ClCompile Include="src\messages\empty_data_buffer_exception.cpp" />
+    <ClCompile Include="src\messages\message_received_factory.cpp" />
+    <ClCompile Include="src\messages\received\access_denied.cpp" />
+    <ClCompile Include="src\messages\received\connected.cpp" />
+    <ClCompile Include="src\messages\received\hello_challenge.cpp" />
+    <ClCompile Include="src\messages\received\message_received.cpp" />
+    <ClCompile Include="src\messages\sent\challenge_reply.cpp" />
+    <ClCompile Include="src\messages\sent\data.cpp" />
+    <ClCompile Include="src\messages\sent\hello.cpp" />
+    <ClCompile Include="src\messages\sent\message_sent.cpp" />
+    <ClCompile Include="src\monitor-system-data-supplier.cpp" />
+    <ClCompile Include="src\socket_controller.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\messages\corrupted_message_exception.h" />
+    <ClInclude Include="lib\messages\empty_data_buffer_exception.h" />
+    <ClInclude Include="lib\messages\message_received_factory.h" />
+    <ClInclude Include="lib\messages\received\access_denied.h" />
+    <ClInclude Include="lib\messages\received\connected.h" />
+    <ClInclude Include="lib\messages\received\hello_challenge.h" />
+    <ClInclude Include="lib\messages\received\message_received.h" />
+    <ClInclude Include="lib\messages\sent\challenge_reply.h" />
+    <ClInclude Include="lib\messages\sent\data.h" />
+    <ClInclude Include="lib\messages\sent\hello.h" />
+    <ClInclude Include="lib\messages\sent\message_sent.h" />
+    <ClInclude Include="lib\socket_controller.h" />
+    <ClInclude Include="lib\stdafx.h" />
+    <ClInclude Include="lib\targetver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,10 +3,10 @@
 /**
  * @brief abstract base class for received messages
  *  */
-class ReceivedMessage
+class message_received
 {
 public:
-	ReceivedMessage() = default;
-	virtual ~ReceivedMessage() = 0;
+	message_received() = default;
+	virtual ~message_received() = 0;
 	
 };
