@@ -5,10 +5,12 @@ class hello :
 {
 public:
 	hello(const std::string& name, const int32_t idnr)
-		: name_(name)
+		: name_(std::move(name))
 		, idnr_(idnr)
 	{}
 	~hello() override;
+	hello(const hello &) = delete;
+	hello(hello &&) = delete;
 
 	std::string to_string() const override;
 

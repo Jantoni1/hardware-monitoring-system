@@ -10,115 +10,63 @@
 #include <string>
 #include <vector>
 #include <boost/algorithm/string.hpp>
-
-const int default_bufflen = 24;
+#include "hello.h"
 
 socket_controller::socket_controller(const std::string& ip, const std::string& port)
 	: authorization_done(false)
-	, ConnectSocket(INVALID_SOCKET)
+	, connect_socket_(INVALID_SOCKET)
 	, ip_(ip)
 	, port_(port)
 	, result_address_(nullptr)
+	, receive_buffer_length_(default_buff_length)
 {
 	set_tcp_hints_values();
-
+	initialize_winsock();
+	resolve_ip_address_and_port();
+	receive_buffer_ = new char[default_buff_length];
 }
 
 
 socket_controller::~socket_controller()
 {
+	freeaddrinfo(result_address_);
+	delete receive_buffer_;
 }
 
 
 
-int socket_controller::connect1()
+int socket_controller::initialize_protocol()
 {
-	struct addrinfo *result = NULL,
-		*ptr = NULL;
-
-
-	////// DO WYRZUCENIA
-	char *sendbuf = "this is a test";
-	char recvbuf[default_bufflen];
-	int iResult;
-	int recvbuflen = default_bufflen;
-	////// DO WYRZUCENIA
-
-	initialize_winsock();
-	resolve_ip_address_and_port();
-
-
 
 	// Attempt to connect to an address until one succeeds
-	for (ptr = result; ptr != NULL; ptr = ptr->ai_next) {
-
-		// Create a SOCKET for connecting to server
-		ConnectSocket = socket(ptr->ai_family, ptr->ai_socktype,
-			ptr->ai_protocol);
-		if (ConnectSocket == INVALID_SOCKET) {
-			printf("socket failed with error: %ld\n", WSAGetLastError());
-			WSACleanup();
-			return 1;
-		}
-
-		// Connect to server.
-		iResult = connect(ConnectSocket, ptr->ai_addr, (int)ptr->ai_addrlen);
-		if (iResult == SOCKET_ERROR) {
-			closesocket(ConnectSocket);
-			ConnectSocket = INVALID_SOCKET;
-			continue;
-		}
-		break;
-	}
-
-	freeaddrinfo(result);
-
-	if (ConnectSocket == INVALID_SOCKET) {
-		printf("Unable to connect to server!\n");
-		WSACleanup();
-		return 1;
-	}
-
-	// Send an initial buffer
-	iResult = send(ConnectSocket, sendbuf, static_cast<int>(strlen(sendbuf)), 0);
-	if (iResult == SOCKET_ERROR) {
-		printf("send failed with error: %d\n", WSAGetLastError());
-		clean_up(ConnectSocket);
-		return 1;
-	}
+	connect_to_server();
+	check_connection();
+	send_message(hello(std::string("kartonex12"), 12).to_string());
 
 	try
 	{
 		while(!authorization_done)
 		{
 			// Receive until the peer closes the connection
-			iResult = recv(ConnectSocket, recvbuf, recvbuflen, 0);
-			check_receive_result(iResult);
+			const auto result = recv(connect_socket_, receive_buffer_, receive_buffer_length_, 0);
+			check_receive_result(result);
 		}
 	}
 	catch(std::exception& e)
 	{
-		closesocket(ConnectSocket);
-		shut_down_socket(ConnectSocket, SD_BOTH);
+		closesocket(connect_socket_);
+		shut_down_socket(connect_socket_, SD_BOTH);
+		return -1;
 	}
-
-
-	printf("Bytes Sent: %ld\n", iResult);
 
 	// shutdown the connection since no more data will be sent
 	
-	iResult = shutdown(ConnectSocket, SD_BOTH);
-	if(check_socket_operation_error(ConnectSocket, iResult))
-	{
-		throw std::exception(); //TODO zmien na inny wyjatek
-	}
+	shut_down_socket(connect_socket_, SD_BOTH);
 
-
-	clean_up(ConnectSocket);
 	return 0;
 }
 
-void socket_controller::check_receive_result(int result) const
+void socket_controller::check_receive_result(const int result) const
 {
 	if (result == 0 && !authorization_done || result < 0)
 		throw std::exception(); //TODO zmieñ na custom exception
@@ -129,21 +77,10 @@ void socket_controller::check_receive_result(int result) const
 
 void socket_controller::shut_down_socket(SOCKET socket, int mode)
 {
-	const int result = shutdown(socket, mode);
-	if(check_socket_operation_error(socket, result))
-	{
-		throw std::exception(); //TODO zmien na lepszy wyj¹tek
-	}
-}
-
-bool socket_controller::check_socket_operation_error(SOCKET socket, int result)
-{
+	const auto result = shutdown(socket, mode);
+	clean_up(socket);
 	if(result == SOCKET_ERROR)
-	{
-		clean_up(socket);
-		return true;
-	}
-	return false;
+		throw std::runtime_error("Error on shutting down socket.");
 }
 
 void socket_controller::clean_up(SOCKET socket)
@@ -154,11 +91,11 @@ void socket_controller::clean_up(SOCKET socket)
 
 void socket_controller::set_tcp_hints_values()
 {
-	// Fill memory with zeros, starts on hint's address and fills next siezof(hints) with zeros
-	ZeroMemory(&hints, sizeof(hints));
-	hints.ai_family = AF_UNSPEC;
-	hints.ai_socktype = SOCK_STREAM;
-	hints.ai_protocol = IPPROTO_TCP;
+	// Fill memory with zeros, starts on hint's address and fills next siezof(hints_) with zeros
+	ZeroMemory(&hints_, sizeof(hints_));
+	hints_.ai_family = AF_UNSPEC;
+	hints_.ai_socktype = SOCK_STREAM;
+	hints_.ai_protocol = IPPROTO_TCP;
 }
 
 void socket_controller::initialize_winsock()
@@ -174,10 +111,55 @@ void socket_controller::initialize_winsock()
 void socket_controller::resolve_ip_address_and_port()
 {
 	// Resolve the server address and port
-	const auto result = getaddrinfo(ip_.c_str(), port_.c_str(), &hints, &result_address_);
+	const auto result = getaddrinfo(ip_.c_str(), port_.c_str(), &hints_, &result_address_);
 	if (result != 0) {
-		throw std::runtime_error(std::string("getaddrinfo failed with error: ") + std::to_string(result));
 		WSACleanup();
-		return 1;
+		throw std::runtime_error(std::string("getaddrinfo failed with error: ") + std::to_string(result));
+	}
+}
+
+void socket_controller::check_connection() const
+{
+	if (connect_socket_ == INVALID_SOCKET) {
+		WSACleanup();
+		throw std::runtime_error(std::string("socket failed with error: ") + std::to_string(WSAGetLastError()));
+	}
+}
+
+bool socket_controller::check_socket_error(const int status)
+{
+	if (status == SOCKET_ERROR)
+	{
+		closesocket(connect_socket_);
+		connect_socket_ = INVALID_SOCKET;
+		return true;
+	}
+	return false;
+}
+
+void socket_controller::connect_to_server()
+{
+	for (struct addrinfo *ptr = result_address_; ptr != nullptr; ptr = ptr->ai_next) {
+
+		// Create a SOCKET for connecting to server
+		connect_socket_ = socket(ptr->ai_family, ptr->ai_socktype,
+			ptr->ai_protocol);
+		check_connection();
+
+		// Connect to server.
+		if (!check_socket_error(connect(connect_socket_, ptr->ai_addr, static_cast<int>(ptr->ai_addrlen))))
+		{
+			break;
+		}
+	}
+}
+
+void socket_controller::send_message(std::string message) const
+{
+	// Send an initial buffer
+	const auto result = send(connect_socket_, message.c_str(), message.size(), 0);
+	if (result == SOCKET_ERROR) {
+		clean_up(connect_socket_);
+		throw std::runtime_error(std::string("send failed with error: ") + std::to_string(WSAGetLastError()));
 	}
 }

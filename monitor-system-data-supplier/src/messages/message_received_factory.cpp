@@ -6,7 +6,7 @@
 #include "corrupted_message_exception.h"
 
 
-uint32_t convert_to_int(char* integer)
+int32_t convert_to_int(char* integer)
 {
 	return ntohl(*reinterpret_cast<int32_t*>(integer));
 }

@@ -29,11 +29,11 @@
     <Filter Include="Source Files\messages\sent">
       <UniqueIdentifier>{48515417-ca58-47ac-bf52-18d730af1129}</UniqueIdentifier>
     </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{b9c43af0-8899-4007-a6ce-808606a03f66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\monitor-system-data-supplier.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -73,6 +73,15 @@
     <ClCompile Include="src\socket_controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test\message_test.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="test\test_main.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\monitor-system-data-supplier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\stdafx.h">
@@ -105,9 +114,6 @@
     <ClInclude Include="lib\messages\sent\message_sent.h">
       <Filter>Header Files\messages\sent</Filter>
     </ClInclude>
-    <ClInclude Include="lib\messages\corrupted_message_exception.h">
-      <Filter>Header Files\messages</Filter>
-    </ClInclude>
     <ClInclude Include="lib\messages\sent\hello.h">
       <Filter>Header Files\messages\sent</Filter>
     </ClInclude>
@@ -116,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="lib\socket_controller.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\corrupted_message_exception.h">
+      <Filter>Header Files\messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

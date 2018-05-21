@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	{
 		std::vector<std::string> arguments = std::move(parse_input_arguments(argc, argv));
 		socket_controller controller(arguments[0], arguments[1]);
-		controller.connect1();	
+		controller.initialize_protocol();
 	}
 	catch(std::runtime_error& e)
 	{
