@@ -4,9 +4,9 @@
 #include <Winsock2.h>
 
 
-challenge_reply::challenge_reply(const int32_t id, std::string& reply) 
+challenge_reply::challenge_reply(const int32_t id, std::string reply) 
 	: id_(id)
-	, reply_(reply)
+	, reply_(std::move(reply))
 {}
 
 challenge_reply::~challenge_reply()

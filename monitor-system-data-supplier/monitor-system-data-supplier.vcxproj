@@ -242,6 +242,7 @@
     <ClCompile Include="src\monitor-system-data-supplier.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\protocol_controller.cpp" />
     <ClCompile Include="src\socket_controller.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -266,6 +267,7 @@
     <ClInclude Include="lib\messages\sent\data.h" />
     <ClInclude Include="lib\messages\sent\hello.h" />
     <ClInclude Include="lib\messages\sent\message_sent.h" />
+    <ClInclude Include="lib\protocol_controller.h" />
     <ClInclude Include="lib\socket_controller.h" />
     <ClInclude Include="lib\stdafx.h" />
     <ClInclude Include="lib\targetver.h" />

@@ -5,10 +5,23 @@
 #include <Winsock2.h>
 #include "corrupted_message_exception.h"
 
+union int32_t_converter
+{
+	char char_array[4];
+	int32_t int_value;
+};
+
+union uint64_t_converter
+{
+	char char_array[4];
+	uint64_t long_value;
+};
 
 int32_t convert_to_int(char* integer)
 {
-	return ntohl(*reinterpret_cast<int32_t*>(integer));
+	int32_t_converter converter;
+	memcpy(converter.char_array, integer, 4);
+	return ntohl(converter.int_value);
 }
 
 

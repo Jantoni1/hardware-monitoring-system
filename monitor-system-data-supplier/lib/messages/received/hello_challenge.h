@@ -12,6 +12,17 @@ public:
 	{}
 	virtual ~hello_challenge() override = default;
 
+
+	int id() const
+	{
+		return id_;
+	}
+
+	const std::string &challenge() const
+	{
+		return challenge_;
+	}
+
 private:
 	int id_;
 	const std::string challenge_;
