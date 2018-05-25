@@ -5,6 +5,14 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="lol|Win32">
+      <Configuration>lol</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="lol|x64">
+      <Configuration>lol</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -17,6 +25,14 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="test|Win32">
+      <Configuration>test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="test|x64">
+      <Configuration>test</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{ED8E54D2-848B-4129-ACFB-A0E994D3B5A6}</ProjectGuid>
@@ -26,6 +42,12 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
@@ -44,12 +66,24 @@
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='lol|Win32'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='lol|x64'">
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -59,10 +93,16 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -71,8 +111,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\controllers;C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\controllers;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,13 +138,49 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalUsingDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
@@ -142,40 +228,58 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AccessDenied.h" />
-    <ClInclude Include="ChallengeReply.h" />
-    <ClInclude Include="Connected.h" />
-    <ClInclude Include="Data.h" />
-    <ClInclude Include="EmptyDataBufferException.h" />
-    <ClInclude Include="Hello.h" />
-    <ClInclude Include="HelloChallenge.h" />
-    <ClInclude Include="ReceivedMessage.h" />
-    <ClInclude Include="ReceiveMessageFactory.h" />
-    <ClInclude Include="SendMessage.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="AccessDenied.cpp" />
-    <ClCompile Include="ChallengeReply.cpp" />
-    <ClCompile Include="Connected.cpp" />
-    <ClCompile Include="Data.cpp" />
-    <ClCompile Include="EmptyDataBufferException.cpp" />
-    <ClCompile Include="Hello.cpp" />
-    <ClCompile Include="HelloChallenge.cpp" />
-    <ClCompile Include="ReceivedMessage.cpp" />
-    <ClCompile Include="monitor-system-data-supplier.cpp" />
-    <ClCompile Include="ReceiveMessageFactory.cpp" />
-    <ClCompile Include="SendMessage.cpp" />
-    <ClCompile Include="stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    <ClCompile Include="src\controllers\protocol_controller.cpp" />
+    <ClCompile Include="src\controllers\tcp_socket_controller.cpp" />
+    <ClCompile Include="src\controllers\udp_socket_controller.cpp" />
+    <ClCompile Include="src\messages\message_received_factory.cpp" />
+    <ClCompile Include="src\messages\received\access_denied.cpp" />
+    <ClCompile Include="src\messages\received\connected.cpp" />
+    <ClCompile Include="src\messages\received\hello_challenge.cpp" />
+    <ClCompile Include="src\messages\received\message_received.cpp" />
+    <ClCompile Include="src\messages\sent\challenge_reply.cpp" />
+    <ClCompile Include="src\messages\sent\data.cpp" />
+    <ClCompile Include="src\messages\sent\data_request.cpp" />
+    <ClCompile Include="src\messages\sent\hello.cpp" />
+    <ClCompile Include="src\messages\sent\message_sent.cpp" />
+    <ClCompile Include="src\configuration.cpp" />
+    <ClCompile Include="src\monitor-system-data-supplier.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='test|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="test\message_factory_test.cpp" />
+    <ClCompile Include="test\message_test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\test_main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\controllers\protocol_controller.h" />
+    <ClInclude Include="lib\controllers\tcp_socket_controller.h" />
+    <ClInclude Include="lib\controllers\udp_socket_controller.h" />
+    <ClInclude Include="lib\messages\message_received_factory.h" />
+    <ClInclude Include="lib\messages\received\access_denied.h" />
+    <ClInclude Include="lib\messages\received\connected.h" />
+    <ClInclude Include="lib\messages\received\hello_challenge.h" />
+    <ClInclude Include="lib\messages\received\message_received.h" />
+    <ClInclude Include="lib\messages\sent\challenge_reply.h" />
+    <ClInclude Include="lib\messages\sent\data.h" />
+    <ClInclude Include="lib\messages\sent\data_request.h" />
+    <ClInclude Include="lib\messages\sent\hello.h" />
+    <ClInclude Include="lib\messages\sent\message_sent.h" />
+    <ClInclude Include="lib\configuration.h" />
+    <ClInclude Include="lib\stdafx.h" />
+    <ClInclude Include="lib\targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
