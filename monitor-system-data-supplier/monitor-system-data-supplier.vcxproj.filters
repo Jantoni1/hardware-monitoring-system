@@ -160,4 +160,7 @@
   <ItemGroup>
     <None Include="config.cfg" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
 </Project>
