@@ -278,6 +278,9 @@
     <ClInclude Include="lib\stdafx.h" />
     <ClInclude Include="lib\targetver.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="config.cfg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

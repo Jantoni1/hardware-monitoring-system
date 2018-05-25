@@ -157,4 +157,7 @@
       <Filter>Header Files\controllers</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="config.cfg" />
+  </ItemGroup>
 </Project>
