@@ -4,8 +4,7 @@
 #include "udp_socket_controller.h"
 #include "configuration.h"
 
-const static std::string standard_file_path_ = "config.cfg";
-
+const static std::string standard_file_path = "config.cfg";
 
 class protocol_controller
 {
@@ -31,7 +30,7 @@ public:
 		tcp_server_socket_controller_ = socket_controller_object;
 	}
 
-	void set_configuration(const std::string &file_path = standard_file_path_);
+	void set_configuration(const std::string &file_path = standard_file_path);
 
 private:
 

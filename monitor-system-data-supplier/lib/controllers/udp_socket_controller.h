@@ -11,7 +11,6 @@ public:
 		, udp_port_(udp_port)
 		, udp_socket_(-1)
 	{}
-	udp_socket_controller();
 	~udp_socket_controller();
 
 	void initialize_udp_connection();
