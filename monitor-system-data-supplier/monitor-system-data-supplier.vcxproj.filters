@@ -61,14 +61,8 @@
     <ClCompile Include="src\messages\sent\challenge_reply.cpp">
       <Filter>Source Files\messages\sent</Filter>
     </ClCompile>
-    <ClCompile Include="src\messages\empty_data_buffer_exception.cpp">
-      <Filter>Source Files\messages</Filter>
-    </ClCompile>
     <ClCompile Include="src\messages\sent\message_sent.cpp">
       <Filter>Source Files\messages\sent</Filter>
-    </ClCompile>
-    <ClCompile Include="src\messages\corrupted_message_exception.cpp">
-      <Filter>Source Files\messages</Filter>
     </ClCompile>
     <ClCompile Include="src\messages\sent\hello.cpp">
       <Filter>Source Files\messages\sent</Filter>
@@ -100,6 +94,7 @@
     <ClCompile Include="src\controllers\udp_socket_controller.cpp">
       <Filter>Source Files\controllers</Filter>
     </ClCompile>
+    <ClCompile Include="test\message_factory_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lib\stdafx.h">
@@ -107,9 +102,6 @@
     </ClInclude>
     <ClInclude Include="lib\targetver.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\messages\empty_data_buffer_exception.h">
-      <Filter>Header Files\messages</Filter>
     </ClInclude>
     <ClInclude Include="lib\messages\message_received_factory.h">
       <Filter>Header Files\messages</Filter>
@@ -137,9 +129,6 @@
     </ClInclude>
     <ClInclude Include="lib\messages\sent\data.h">
       <Filter>Header Files\messages\sent</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\messages\corrupted_message_exception.h">
-      <Filter>Header Files\messages</Filter>
     </ClInclude>
     <ClInclude Include="lib\configuration.h">
       <Filter>Header Files</Filter>

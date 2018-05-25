@@ -36,6 +36,21 @@ public:
 		return raw_data_;
 	}
 
+	int id() const
+	{
+		return id_;
+	}
+
+	int temperature() const
+	{
+		return temperature_;
+	}
+
+	uint64_t timestamp() const
+	{
+		return timestamp_;
+	}
+
 private:
 	int id_;
 	int temperature_;

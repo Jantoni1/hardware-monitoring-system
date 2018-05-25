@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "protocol_controller.h"
+#include "controllers/protocol_controller.h"
 #include "challenge_reply.h"
 #include "hello.h"
 #include "data_request.h"
@@ -30,10 +30,12 @@ void protocol_controller::consume(hello_challenge* hello_challenge_object)
 	challenge_reply challenge_reply_object(configuration_.id_from_server(), calculate_md5(hello_challenge_object->challenge()));
 	tcp_server_socket_controller_->send_message(challenge_reply_object.to_string());
 	current_stage_ = message_received_type::connected;
+	delete hello_challenge_object;
 }
 
 void protocol_controller::consume(access_denied* access_denied_object)
 {
+	delete access_denied_object;
 	if (current_stage_ != message_received_type::connected)
 	{
 		throw std::runtime_error("Unexpectedly received access_denied message. Connection aborted.");
@@ -43,6 +45,7 @@ void protocol_controller::consume(access_denied* access_denied_object)
 
 void protocol_controller::consume(connected* connected_object)
 {
+	delete connected_object;
 	if (current_stage_ != message_received_type::connected)
 	{
 		throw std::runtime_error("Unexpectedly received connected message. Connection aborted.");

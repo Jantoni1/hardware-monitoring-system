@@ -1,9 +1,8 @@
 #include "stdafx.h"
-#include "udp_socket_controller.h"
+#include "controllers/udp_socket_controller.h"
 #include "data.h"
 #include <boost/thread.hpp>
 #include <ws2tcpip.h>
-#include <iostream>
 
 
 udp_socket_controller::~udp_socket_controller()

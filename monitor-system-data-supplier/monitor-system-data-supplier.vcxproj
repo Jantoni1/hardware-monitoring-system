@@ -231,8 +231,6 @@
     <ClCompile Include="src\controllers\protocol_controller.cpp" />
     <ClCompile Include="src\controllers\tcp_socket_controller.cpp" />
     <ClCompile Include="src\controllers\udp_socket_controller.cpp" />
-    <ClCompile Include="src\messages\corrupted_message_exception.cpp" />
-    <ClCompile Include="src\messages\empty_data_buffer_exception.cpp" />
     <ClCompile Include="src\messages\message_received_factory.cpp" />
     <ClCompile Include="src\messages\received\access_denied.cpp" />
     <ClCompile Include="src\messages\received\connected.cpp" />
@@ -251,6 +249,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='test|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="test\message_factory_test.cpp" />
     <ClCompile Include="test\message_test.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -262,8 +261,6 @@
     <ClInclude Include="lib\controllers\protocol_controller.h" />
     <ClInclude Include="lib\controllers\tcp_socket_controller.h" />
     <ClInclude Include="lib\controllers\udp_socket_controller.h" />
-    <ClInclude Include="lib\messages\corrupted_message_exception.h" />
-    <ClInclude Include="lib\messages\empty_data_buffer_exception.h" />
     <ClInclude Include="lib\messages\message_received_factory.h" />
     <ClInclude Include="lib\messages\received\access_denied.h" />
     <ClInclude Include="lib\messages\received\connected.h" />

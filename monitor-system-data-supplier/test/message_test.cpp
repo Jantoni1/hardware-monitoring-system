@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include <boost/test/unit_test.hpp>
 #include "hello.h"
+#include "data_request.h"
+#include "data.h"
 #include <iostream>
 #include <Winsock2.h>
+#include "challenge_reply.h"
 
 #define BOOST_TEST_DYN_LINK
 
@@ -32,6 +35,15 @@ int32_t copy_int_from_buffer(const std::string& str, const int position)
 	return ntohl(converter.int_value);
 }
 
+std::string copy_string_from_buffer(const std::string& buffer, int position, const int bytes)
+{
+	char *tab = new char[bytes];
+	memcpy(tab, buffer.c_str() + position, bytes);
+	auto result = std::string(tab, bytes);
+	delete[] tab;
+	return result;
+}
+
 uint64_t copy_unsigned_long_from_buffer(const std::string& str, const int position)
 {
 	uint64_t_converter converter;
@@ -39,7 +51,12 @@ uint64_t copy_unsigned_long_from_buffer(const std::string& str, const int positi
 	return ntohll(converter.long_value);
 }
 
-BOOST_AUTO_TEST_SUITE(message_build_suite)
+std::string calculate_md5(const std::string& challenge)
+{
+	return challenge; //TODO
+}
+
+BOOST_AUTO_TEST_SUITE(building_hello_message)
 
 BOOST_AUTO_TEST_CASE(build_sample_hello_message_retreived_message_type_equals_hello)
 {
@@ -89,5 +106,94 @@ BOOST_AUTO_TEST_CASE(build_sample_hello_message_retreived_id_value_equals_minus_
 	const auto retreived_id_value = copy_int_from_buffer(hello_output, 14);
 	BOOST_CHECK_EQUAL(retreived_id_value, id);
 }
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(building_data_request)
+
+BOOST_AUTO_TEST_CASE(build_data_request_contains_dot)
+{
+	data_request data_request_object;
+	BOOST_CHECK_EQUAL(data_request_object.to_string(), std::string("."));
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(building_data)
+
+BOOST_AUTO_TEST_CASE(build_data_check_id_equals_1000)
+{
+	const auto id = 1000;
+	data data_object(id);
+	BOOST_CHECK_EQUAL(data_object.id(), id);
+}
+
+BOOST_AUTO_TEST_CASE(data_to_string_message_type_equals_send)
+{
+	data data_object(1);
+	auto result = data_object.to_string();
+	BOOST_CHECK_EQUAL(copy_int_from_buffer(result, 0), static_cast<int>(message_sent_type::data));
+}
+
+BOOST_AUTO_TEST_CASE(data_to_string_check_temperature_equals_100)
+{
+	const auto temperature = 100;
+	data data_object(1);
+	data_object.set_temperature(temperature);
+	auto result = data_object.to_string();
+	BOOST_CHECK_EQUAL(copy_int_from_buffer(result, 8), temperature);
+}
+
+BOOST_AUTO_TEST_CASE(data_to_string_check_id_equals_1000)
+{
+	const auto id = 1000;
+	data data_object(id);
+	auto result = data_object.to_string();
+	BOOST_CHECK_EQUAL(copy_int_from_buffer(result, 4), id);
+}
+
+BOOST_AUTO_TEST_CASE(data_to_string_check_timestamp_equals_1000)
+{
+	const uint64_t timestamp = 1000;
+	data data_object(1);
+	data_object.set_timestamp(timestamp);
+	auto result = data_object.to_string();
+	BOOST_CHECK_EQUAL(copy_unsigned_long_from_buffer(result, 12), timestamp);
+}
+
+BOOST_AUTO_TEST_SUITE_END()
+
+BOOST_AUTO_TEST_SUITE(building_challenge_reply)
+
+BOOST_AUTO_TEST_CASE(challenge_reply_to_string_check_message_type_equals_challenge_reply)
+{
+	challenge_reply challenge_reply_object(1, std::string("1234567890123456", 16));
+	const auto result = challenge_reply_object.to_string();
+	BOOST_CHECK_EQUAL(copy_int_from_buffer(result, 0), static_cast<int>(message_sent_type::challenge_reply));
+}
+
+BOOST_AUTO_TEST_CASE(challenge_reply_to_string_check_id_equals_15)
+{
+	const auto id = 15;
+	challenge_reply challenge_reply_object(id, std::string("1234567890123456", 16));
+	const auto result = challenge_reply_object.to_string();
+	BOOST_CHECK_EQUAL(copy_int_from_buffer(result, 4), id);
+}
+
+BOOST_AUTO_TEST_CASE(challenge_reply_to_string_check_reply_equals_challenge_md5)
+{
+	const auto challenge = std::string("1234567890123456", 16);
+	challenge_reply challenge_reply_object(1, challenge);
+	const auto result = challenge_reply_object.to_string();
+	BOOST_CHECK_EQUAL(copy_string_from_buffer(result, 8, 16), calculate_md5(challenge));
+}
+
+
+BOOST_AUTO_TEST_SUITE_END()
+
+
+BOOST_AUTO_TEST_SUITE(build_access_denied_message)
+
+
 
 BOOST_AUTO_TEST_SUITE_END()
