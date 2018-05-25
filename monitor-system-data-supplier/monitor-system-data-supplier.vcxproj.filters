@@ -32,6 +32,12 @@
     <Filter Include="tests">
       <UniqueIdentifier>{b9c43af0-8899-4007-a6ce-808606a03f66}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\controllers">
+      <UniqueIdentifier>{9ac7cfa9-5071-4256-831f-86ff18ea3ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\controllers">
+      <UniqueIdentifier>{14ac71c6-c893-4cc6-8f7a-38839824c7ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\stdafx.cpp">
@@ -70,9 +76,6 @@
     <ClCompile Include="src\messages\sent\data.cpp">
       <Filter>Source Files\messages\sent</Filter>
     </ClCompile>
-    <ClCompile Include="src\socket_controller.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test\message_test.cpp">
       <Filter>tests</Filter>
     </ClCompile>
@@ -82,8 +85,20 @@
     <ClCompile Include="src\monitor-system-data-supplier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\protocol_controller.cpp">
+    <ClCompile Include="src\configuration.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\messages\sent\data_request.cpp">
+      <Filter>Source Files\messages\sent</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\protocol_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\tcp_socket_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\controllers\udp_socket_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,14 +138,23 @@
     <ClInclude Include="lib\messages\sent\data.h">
       <Filter>Header Files\messages\sent</Filter>
     </ClInclude>
-    <ClInclude Include="lib\socket_controller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\messages\corrupted_message_exception.h">
       <Filter>Header Files\messages</Filter>
     </ClInclude>
-    <ClInclude Include="lib\protocol_controller.h">
+    <ClInclude Include="lib\configuration.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\messages\sent\data_request.h">
+      <Filter>Header Files\messages\sent</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\controllers\protocol_controller.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\controllers\tcp_socket_controller.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\controllers\udp_socket_controller.h">
+      <Filter>Header Files\controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

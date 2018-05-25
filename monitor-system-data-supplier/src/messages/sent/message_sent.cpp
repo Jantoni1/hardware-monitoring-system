@@ -3,16 +3,6 @@
 #include <Winsock2.h>
 #include <iostream>
 
-//template<typename T>
-//void convert_to_char(char* dest, const T t, const std::size_t size)
-//{
-//	for (int i = 0; i < size; ++i)
-//	{
-//		dest[i] = t >> i * 8;
-//		std::cout << (int)dest[i] << std::endl;
-//	}
-//}
-
 union int32_t_converter
 {
 	char char_array[4];
@@ -36,7 +26,7 @@ void message_sent::convert_integer(char* dest, const int32_t integer_variable)
 void message_sent::convert_unsigned_long(char* dest, const uint64_t long_variable)
 {
 	int64_t_converter converter;
-	converter.long_value = htonl(long_variable);
+	converter.long_value = htonll(long_variable);
 	memcpy(dest, converter.char_array, 8);
 //	convert_to_char<uint64_t>(dest, long_variable, 8);
 }

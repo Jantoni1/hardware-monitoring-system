@@ -111,8 +111,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
+    <IncludePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\controllers;C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\controllers;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -228,6 +228,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\controllers\protocol_controller.cpp" />
+    <ClCompile Include="src\controllers\tcp_socket_controller.cpp" />
+    <ClCompile Include="src\controllers\udp_socket_controller.cpp" />
     <ClCompile Include="src\messages\corrupted_message_exception.cpp" />
     <ClCompile Include="src\messages\empty_data_buffer_exception.cpp" />
     <ClCompile Include="src\messages\message_received_factory.cpp" />
@@ -237,13 +240,13 @@
     <ClCompile Include="src\messages\received\message_received.cpp" />
     <ClCompile Include="src\messages\sent\challenge_reply.cpp" />
     <ClCompile Include="src\messages\sent\data.cpp" />
+    <ClCompile Include="src\messages\sent\data_request.cpp" />
     <ClCompile Include="src\messages\sent\hello.cpp" />
     <ClCompile Include="src\messages\sent\message_sent.cpp" />
+    <ClCompile Include="src\configuration.cpp" />
     <ClCompile Include="src\monitor-system-data-supplier.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\protocol_controller.cpp" />
-    <ClCompile Include="src\socket_controller.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='test|Win32'">Create</PrecompiledHeader>
@@ -256,6 +259,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="lib\controllers\protocol_controller.h" />
+    <ClInclude Include="lib\controllers\tcp_socket_controller.h" />
+    <ClInclude Include="lib\controllers\udp_socket_controller.h" />
     <ClInclude Include="lib\messages\corrupted_message_exception.h" />
     <ClInclude Include="lib\messages\empty_data_buffer_exception.h" />
     <ClInclude Include="lib\messages\message_received_factory.h" />
@@ -265,10 +271,10 @@
     <ClInclude Include="lib\messages\received\message_received.h" />
     <ClInclude Include="lib\messages\sent\challenge_reply.h" />
     <ClInclude Include="lib\messages\sent\data.h" />
+    <ClInclude Include="lib\messages\sent\data_request.h" />
     <ClInclude Include="lib\messages\sent\hello.h" />
     <ClInclude Include="lib\messages\sent\message_sent.h" />
-    <ClInclude Include="lib\protocol_controller.h" />
-    <ClInclude Include="lib\socket_controller.h" />
+    <ClInclude Include="lib\configuration.h" />
     <ClInclude Include="lib\stdafx.h" />
     <ClInclude Include="lib\targetver.h" />
   </ItemGroup>

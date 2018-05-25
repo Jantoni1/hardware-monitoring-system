@@ -4,7 +4,7 @@ class data :
 	public message_sent
 {
 public:
-	data(const int32_t id)
+	explicit data(const int32_t id)
 		: id_(id)
 		, temperature_(1)
 		, timestamp_(1)
@@ -17,16 +17,29 @@ public:
 	void set_temperature(const int temperature)
 	{
 		temperature_ = temperature;
+		raw_data_.clear();
 	}
 
 	void set_timestamp(const uint64_t timestamp)
 	{
 		timestamp_ = timestamp;
+		raw_data_.clear();
+	}
+
+	void set_raw_data(std::string&& raw_data)
+	{
+		raw_data_ = std::move(raw_data);
+	}
+
+	const std::string& raw_data() const
+	{
+		return raw_data_;
 	}
 
 private:
 	int id_;
 	int temperature_;
 	uint64_t timestamp_;
+	std::string raw_data_;
 };
 

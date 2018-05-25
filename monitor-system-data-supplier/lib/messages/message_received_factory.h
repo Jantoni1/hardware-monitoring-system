@@ -14,16 +14,16 @@ public:
 	message_received_factory() = default;
 	~message_received_factory() = default;
 
-	message_received* build_message(char* buffer, const unsigned length) const;
+	message_received* build_message(const char* buffer, const unsigned length) const;
 
 private:
 
-	access_denied* build_access_denied_message(char* buffer, unsigned length) const;
-	connected* build_connected_message(char* buffer, unsigned length) const;
-	hello_challenge* build_hello_challenge_message(char* buffer, unsigned length) const;
+	access_denied* build_access_denied_message(const char* buffer, unsigned length) const;
+	connected* build_connected_message(const char* buffer, unsigned length) const;
+	hello_challenge* build_hello_challenge_message(const char* buffer, unsigned length) const;
 
 
-	const std::unordered_map<message_received_type, std::function<message_received*(char*, unsigned)>> factory_object_types_ =
+	const std::unordered_map<message_received_type, std::function<message_received*(const char*, unsigned)>> factory_object_types_ =
 	{ {message_received_type::hello_challenge, std::bind(&message_received_factory::build_hello_challenge_message, this
 	                                                    , std::placeholders::_1, std::placeholders::_2)}
 	, {message_received_type::connected, std::bind(&message_received_factory::build_connected_message, this

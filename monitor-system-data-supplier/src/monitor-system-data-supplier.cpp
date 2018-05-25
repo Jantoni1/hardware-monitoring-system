@@ -3,47 +3,57 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <Winsock2.h>
-#include "socket_controller.h"
-#include <vector>
-#include <boost/algorithm/string.hpp>
+#include "tcp_socket_controller.h"
+#include "protocol_controller.h"
 
 //TODO clear imports
 
-std::vector<std::string> parse_input_arguments(int argc, char **argv)
+
+std::string parse_input_arguments(int argc, char **argv)
 {
-	using namespace std;
+
 	if (argc != 2) {
-		throw runtime_error(string("usage: ")+ string(argv[0]) + string(" server-name:port"));
+		throw std::runtime_error(std::string("usage: ") + std::string(argv[0]) + std::string(" <configuration_file_name>"));
 	}
-	string sample(argv[1]);
-	vector<string> strs;
-	boost::split(strs, sample, boost::is_any_of(":"));
-	if(strs.size() != 2)
-	{
-		throw runtime_error(string("usage: ") + string(argv[0]) + string(" server-name:port"));
-	}
-	return strs;
+	return std::string(argv[1]);
 }
 
+protocol_controller create_controller(int argc, char **argv)
+{
+	protocol_controller controller;
+	if (argc == 2)
+	{
+		const auto configuration_file_path = std::move(parse_input_arguments(argc, argv));
+		controller.set_configuration(configuration_file_path);
+	}
+	else
+	{
+		controller.set_configuration();
+	}
+	return controller;
+}
 
 int main(int argc, char **argv)
 {
-
-	try
+	while(true)
 	{
-		std::vector<std::string> arguments = std::move(parse_input_arguments(argc, argv));
-		socket_controller controller(arguments[0], arguments[1]);
-		controller.initialize_protocol();
+		try
+		{
+			std::cout << "Starting connection." << std::endl << std::endl;
+			auto controller = std::move(create_controller(argc, argv));
+			controller.establish_connection();
+		}
+		catch (std::runtime_error& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		catch (std::exception&)
+		{
+			std::cout << " An error occured. Rebooting app" << std::endl << std::endl;
+		}
+		boost::this_thread::sleep_for(boost::chrono::seconds{ 1 });
 	}
-	catch(std::runtime_error& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	catch(std::exception& e)
-	{
-		std::cout << " An error occured ;)" << std::endl;
-	}
+	
 	return 0;
 }
 
