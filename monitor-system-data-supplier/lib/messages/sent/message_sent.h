@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-enum class message_sent_type {hello = 0, challenge_reply = 1, data  = 2};
+enum class message_sent_type {hello = 1, challenge_reply = 3, data  = 6};
 
 /**
 * @brief abstract base class for messages sent by this app

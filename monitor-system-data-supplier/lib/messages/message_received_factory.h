@@ -6,7 +6,7 @@
 #include "received/connected.h"
 #include "received/hello_challenge.h"
 
-enum class message_received_type {hello_challenge = 0, connected = 1, access_denied = 2};
+enum class message_received_type {hello_challenge = 2, connected = 5, access_denied = 4};
 
 class message_received_factory
 {
