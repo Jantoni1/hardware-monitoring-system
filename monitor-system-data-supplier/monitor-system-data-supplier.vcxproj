@@ -202,6 +202,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -248,6 +249,7 @@
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='test|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="test\message_factory_test.cpp" />
     <ClCompile Include="test\message_test.cpp">
@@ -261,6 +263,7 @@
     <ClInclude Include="lib\controllers\protocol_controller.h" />
     <ClInclude Include="lib\controllers\tcp_socket_controller.h" />
     <ClInclude Include="lib\controllers\udp_socket_controller.h" />
+    <ClInclude Include="lib\md5.h" />
     <ClInclude Include="lib\messages\message_received_factory.h" />
     <ClInclude Include="lib\messages\received\access_denied.h" />
     <ClInclude Include="lib\messages\received\connected.h" />

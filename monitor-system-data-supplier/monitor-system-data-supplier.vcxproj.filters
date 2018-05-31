@@ -145,6 +145,7 @@
     <ClInclude Include="lib\controllers\udp_socket_controller.h">
       <Filter>Header Files\controllers</Filter>
     </ClInclude>
+    <ClInclude Include="lib\md5.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.cfg" />

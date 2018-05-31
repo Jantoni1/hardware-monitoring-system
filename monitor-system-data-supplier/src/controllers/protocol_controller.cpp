@@ -177,6 +177,8 @@ void protocol_controller::open_server_tcp_connection()
 
 std::string protocol_controller::calculate_md5(const std::string& input)
 {
-	return input; //TODO implement
+	char *array = new char[input.size() + 1];
+	memcpy(array, input.c_str(), input.size() + 1);
+	return std::string(md5_calculator.digestString(array), input.size());
 }
 

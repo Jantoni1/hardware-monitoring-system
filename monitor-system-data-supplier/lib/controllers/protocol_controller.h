@@ -3,6 +3,7 @@
 #include "tcp_socket_controller.h"
 #include "udp_socket_controller.h"
 #include "configuration.h"
+#include "md5.h"
 
 const static std::string standard_file_path = "config.cfg";
 
@@ -44,7 +45,7 @@ private:
 	void open_daemon_tcp_connection();
 	void open_server_tcp_connection();
 
-	static std::string calculate_md5(const std::string& input);
+	std::string calculate_md5(const std::string& input);
 
 
 	message_received_type current_stage_;
@@ -57,5 +58,7 @@ private:
 	configuration configuration_;
 
 	boost::thread *udp_thread_;
+
+	MD5 md5_calculator;
 };
 

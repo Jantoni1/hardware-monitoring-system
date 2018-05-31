@@ -18,7 +18,7 @@ std::string challenge_reply::to_string() const
 	char data[24];
 	convert_message_type(data, message_sent_type::challenge_reply);
 	convert_integer(data + 4, id_);
-	copy_string(data + 8, reply_, 16);
+	copy_string(data + 8, reply_, 32);
 
-	return  std::string(data, 24);
+	return  std::string(data, 40);
 }
