@@ -84,8 +84,8 @@ BOOST_AUTO_TEST_CASE(message_factory_parse_id_equals_15_and_challenge_equals_123
 	const auto challenge = std::string("1234567890123456", 16);
 	const auto value = std::move(create_hello_message_buffer(int_to_char_pointer(id), challenge));
 	auto *message = dynamic_cast<hello_challenge *>(message_factory.build_message(value.c_str(), value.size()));
-	BOOST_CHECK_EQUAL(message->id(), id);
 	BOOST_CHECK_EQUAL(message->challenge(), challenge);
+	BOOST_CHECK_EQUAL(message->id(), id);
 	delete message;
 }
 

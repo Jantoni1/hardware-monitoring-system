@@ -4,9 +4,8 @@
 #include <Winsock2.h>
 
 
-challenge_reply::challenge_reply(const int32_t id, std::string challenge) 
-	: id_(id)
-	, reply_(std::move(challenge))
+challenge_reply::challenge_reply(std::string challenge) 
+	: reply_(std::move(challenge))
 {}
 
 challenge_reply::~challenge_reply()
@@ -15,10 +14,8 @@ challenge_reply::~challenge_reply()
 
 std::string challenge_reply::to_string() const
 {
-	char data[24];
+	char data[36];
 	convert_message_type(data, message_sent_type::challenge_reply);
-	convert_integer(data + 4, id_);
-	copy_string(data + 8, reply_, 32);
-
-	return  std::string(data, 40);
+	copy_string(data + 4, reply_, 32);
+	return  std::string(data, 36);
 }

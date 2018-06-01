@@ -24,7 +24,7 @@ void configuration::parse_configuration()
 		input_stream.close();
 		throw e;
 	}
-	catch(boost::bad_lexical_cast &e) {
+	catch(boost::bad_lexical_cast &) {
 		input_stream.close();
 		throw std::runtime_error("Incorrect value in line: " + line);
 	}

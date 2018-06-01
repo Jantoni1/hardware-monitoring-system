@@ -27,7 +27,7 @@ void protocol_controller::consume(hello_challenge* hello_challenge_object)
 		throw std::runtime_error("Unexpectedly received hello_challenge message. Connection aborted.");
 	}
 	configuration_.set_id_from_server(hello_challenge_object->id());
-	challenge_reply challenge_reply_object(configuration_.id_from_server(), calculate_md5(hello_challenge_object->challenge()));
+	challenge_reply challenge_reply_object(calculate_md5(hello_challenge_object->challenge()));
 	tcp_server_socket_controller_->send_message(challenge_reply_object.to_string());
 	current_stage_ = message_received_type::connected;
 	delete hello_challenge_object;
