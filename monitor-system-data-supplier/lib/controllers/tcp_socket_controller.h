@@ -12,12 +12,12 @@ public:
 
 	void initialize_protocol();
 	void send_message(std::string message) const;
-	std::string receive() const;
+	std::pair<int, std::string> receive() const;
 	void shut_down_socket() const;
 
 
 private:
-	void check_receive_result(const int receive) const;
+	int check_receive_result(const int receive) const;
 	void clean_up() const;
 
 

@@ -19,7 +19,6 @@ public:
 	{}
 	~protocol_controller();
 
-	void consume(message_received *message_received_object);
 	void consume(hello_challenge *hello_challenge_object);
 	void consume(access_denied *access_denied_object);
 	void consume(connected *connected_object);
@@ -32,6 +31,14 @@ public:
 	}
 
 	void set_configuration(const std::string &file_path = standard_file_path);
+
+	void shut_down_threads();
+
+
+	message_received_type current_stage() const
+	{
+		return current_stage_;
+	}
 
 private:
 

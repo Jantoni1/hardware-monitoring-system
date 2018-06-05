@@ -23,6 +23,8 @@ public:
 		return challenge_;
 	}
 
+	void consume(protocol_controller& controller) override;
+
 private:
 	int id_;
 	const std::string challenge_;
