@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include <access_denied.h>
 #include "controllers/protocol_controller.h"
 

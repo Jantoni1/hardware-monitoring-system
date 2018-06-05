@@ -1,7 +1,6 @@
 // monitor-system-data-supplier.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "thread_controller.h"
 #include <csignal>
 #include <boost/asio.hpp>

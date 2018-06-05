@@ -240,3 +240,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/monitor-system-data-supplier/test/monitor-.ED8E54D2.tlog/unsuccessfulbuild
