@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include <access_denied.h>
-#include "protocol_controller.h"
+#include "controllers/protocol_controller.h"
 
 void access_denied::consume(protocol_controller& controller)
 {

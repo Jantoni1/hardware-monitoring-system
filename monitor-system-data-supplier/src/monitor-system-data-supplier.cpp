@@ -20,9 +20,17 @@ int main(int argc, char **argv)
 		});
 		ios.run();
 	}
+	catch(std::runtime_error &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
+	}
+	catch(...)
+	{
+		std::cout << "Unknown error." << std::endl;
 	}
 	return 0;
 }

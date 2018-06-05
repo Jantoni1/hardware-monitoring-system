@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "thread_controller.h"
+#include "controllers/thread_controller.h"
 #include <csignal>
 
 
@@ -37,14 +37,21 @@ void thread_controller::run_threads()
 			catch (std::runtime_error& e)
 			{
 				std::cout << e.what() << std::endl;
+
 			}
 			catch (std::exception &e)
 			{
-				if(protocol_controller_.current_stage() == message_received_type::access_denied)
-				{
-					std::raise(SIGINT);
-				}
 				std::cout << e.what() << std::endl;
+
+			}
+			if (protocol_controller_.current_stage() == message_received_type::access_denied)
+			{
+				std::cout << "Shutting down application" << std::endl;
+				protocol_controller_.shut_down_threads();
+				return;
+			}
+			else
+			{
 				std::cout << " An error occured. Rebooting app" << std::endl << std::endl;
 			}
 			boost::this_thread::sleep_for(boost::chrono::seconds{ 1 });
