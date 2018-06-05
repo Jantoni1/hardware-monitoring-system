@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include <boost/test/unit_test.hpp>
 #include "message_received_factory.h"
 #include <Winsock2.h>

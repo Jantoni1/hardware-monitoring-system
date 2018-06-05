@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "controllers/udp_socket_controller.h"
 #include "data.h"
 #include <boost/thread.hpp>

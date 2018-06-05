@@ -1,7 +1,5 @@
-#include "stdafx.h"
 #include "thread_controller.h"
 #include <csignal>
-
 
 thread_controller::thread_controller(const int number_of_arguments, char** array)
 	: number_of_arguments_(number_of_arguments)

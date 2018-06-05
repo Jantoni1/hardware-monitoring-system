@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "controllers/tcp_socket_controller.h"
 
 //#include <windows.h>

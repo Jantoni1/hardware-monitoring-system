@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include <string>
 #include "challenge_reply.h"
 #include <Winsock2.h>

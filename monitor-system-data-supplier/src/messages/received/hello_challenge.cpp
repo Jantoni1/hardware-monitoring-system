@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "hello_challenge.h"
 #include "protocol_controller.h"
 

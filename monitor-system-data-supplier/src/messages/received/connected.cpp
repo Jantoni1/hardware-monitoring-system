@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "connected.h"
 #include "protocol_controller.h"
 

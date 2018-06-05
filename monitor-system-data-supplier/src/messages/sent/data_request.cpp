@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "data_request.h"
 
 

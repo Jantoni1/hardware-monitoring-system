@@ -40,9 +40,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\messages\message_received_factory.cpp">
       <Filter>Source Files\messages</Filter>
     </ClCompile>
@@ -94,16 +91,14 @@
     <ClCompile Include="src\controllers\udp_socket_controller.cpp">
       <Filter>Source Files\controllers</Filter>
     </ClCompile>
-    <ClCompile Include="test\message_factory_test.cpp" />
-    <ClCompile Include="src\controllers\thread_controller.cpp" />
+    <ClCompile Include="src\controllers\thread_controller.cpp">
+      <Filter>Source Files\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="test\message_factory_test.cpp">
+      <Filter>tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lib\messages\message_received_factory.h">
       <Filter>Header Files\messages</Filter>
     </ClInclude>
@@ -146,8 +141,12 @@
     <ClInclude Include="lib\controllers\udp_socket_controller.h">
       <Filter>Header Files\controllers</Filter>
     </ClInclude>
-    <ClInclude Include="lib\md5.h" />
-    <ClInclude Include="lib\controllers\thread_controller.h" />
+    <ClInclude Include="lib\md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\controllers\thread_controller.h">
+      <Filter>Header Files\controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="config.cfg" />

@@ -5,14 +5,6 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="lol|Win32">
-      <Configuration>lol</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="lol|x64">
-      <Configuration>lol</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -79,12 +71,6 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='lol|Win32'">
-    <PlatformToolset>v140</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='lol|x64'">
-    <PlatformToolset>v140</PlatformToolset>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -111,121 +97,139 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\controllers;C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\controllers;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\boost;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;$(IncludePath)</IncludePath>
-    <SourcePath>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ProjectDir)lib;$(ProjectDir)lib\controllers;$(ProjectDir)lib\messages;$(ProjectDir)lib\messages\received;$(ProjectDir)lib\messages\sent;$(BOOST_INC);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\sent;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages\received;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib\messages;C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\boost\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>C:\Users\Kuba\Documents\Visual Studio 2015\Projects\monitor-system-data-supplier\monitor-system-data-supplier\lib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <AdditionalOptions>-D_SCL_SECURE_NO_WARNINGS</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(BOOST_LIB);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -246,18 +250,31 @@
     <ClCompile Include="src\configuration.cpp" />
     <ClCompile Include="src\monitor-system-data-supplier.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\stdafx.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='test|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    <ClCompile Include="test\message_factory_test.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="test\message_factory_test.cpp" />
     <ClCompile Include="test\message_test.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="test\test_main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test|x64'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,8 +294,6 @@
     <ClInclude Include="lib\messages\sent\hello.h" />
     <ClInclude Include="lib\messages\sent\message_sent.h" />
     <ClInclude Include="lib\configuration.h" />
-    <ClInclude Include="lib\stdafx.h" />
-    <ClInclude Include="lib\targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="config.cfg" />
