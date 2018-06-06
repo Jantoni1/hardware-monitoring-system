@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "controllers/protocol_controller.h"
 #include "challenge_reply.h"
 #include "hello.h"
@@ -12,12 +11,7 @@ void wait(const int seconds)
 
 protocol_controller::~protocol_controller()
 {
-	delete udp_thread_;
-}
-
-void protocol_controller::consume(message_received* message_received_object)
-{
-	throw std::runtime_error("Protocol error: received message of message_received");
+	shut_down_connections();
 }
 
 void protocol_controller::consume(hello_challenge* hello_challenge_object)
@@ -27,7 +21,7 @@ void protocol_controller::consume(hello_challenge* hello_challenge_object)
 		throw std::runtime_error("Unexpectedly received hello_challenge message. Connection aborted.");
 	}
 	configuration_.set_id_from_server(hello_challenge_object->id());
-	challenge_reply challenge_reply_object(configuration_.id_from_server(), calculate_md5(hello_challenge_object->challenge()));
+	challenge_reply challenge_reply_object(calculate_md5(hello_challenge_object->challenge()));
 	tcp_server_socket_controller_->send_message(challenge_reply_object.to_string());
 	current_stage_ = message_received_type::connected;
 	delete hello_challenge_object;
@@ -36,6 +30,7 @@ void protocol_controller::consume(hello_challenge* hello_challenge_object)
 void protocol_controller::consume(access_denied* access_denied_object)
 {
 	delete access_denied_object;
+	current_stage_ = message_received_type::access_denied;
 	if (current_stage_ != message_received_type::connected)
 	{
 		throw std::runtime_error("Unexpectedly received access_denied message. Connection aborted.");
@@ -46,6 +41,7 @@ void protocol_controller::consume(access_denied* access_denied_object)
 void protocol_controller::consume(connected* connected_object)
 {
 	delete connected_object;
+	std::cout << "Authorization completed!" << std::endl;
 	if (current_stage_ != message_received_type::connected)
 	{
 		throw std::runtime_error("Unexpectedly received connected message. Connection aborted.");
@@ -76,6 +72,15 @@ void protocol_controller::set_configuration(const std::string& file_path)
 	std::cout << " Configuration parsed from file: " << file_path << std::endl;
 }
 
+void protocol_controller::shut_down_threads()
+{
+	if(udp_thread_ != nullptr)
+	{
+		udp_thread_->interrupt();
+		udp_thread_->join();
+	}
+}
+
 void protocol_controller::run_udp_thread()
 {
 	udp_server_socket_controller_ = new udp_socket_controller(configuration_.udp_server_ip_address(), configuration_.udp_server_port());
@@ -92,9 +97,14 @@ void protocol_controller::udp_send_loop() const
 		while (true)
 		{
 			tcp_daemon_socket_controller_->send_message(data_request().to_string());
-			message.set_raw_data(tcp_daemon_socket_controller_->receive());
-			udp_server_socket_controller_->send(message);
-			wait(1);
+			const auto msg = tcp_daemon_socket_controller_->receive();
+			if(msg.first != -1)
+			{
+				message.set_raw_data(std::string(msg.second));
+				udp_server_socket_controller_->send(message);
+				wait(1);
+			}
+			boost::this_thread::interruption_point();
 		}
 	}
 	catch(const boost::thread_interrupted &)
@@ -113,11 +123,16 @@ void protocol_controller::shut_down_connections()
 {
 	if (udp_thread_ != nullptr)
 	{
-		udp_thread_->interrupt();
 		udp_thread_->join();
 	}
-	tcp_daemon_socket_controller_->shut_down_socket();
-	tcp_server_socket_controller_->shut_down_socket();
+	if(tcp_daemon_socket_controller_ != nullptr)
+	{
+		tcp_daemon_socket_controller_->shut_down_socket();
+	}
+	if (tcp_server_socket_controller_ != nullptr)
+	{
+		tcp_server_socket_controller_->shut_down_socket();
+	}
 	delete_sockets();
 }
 
@@ -135,13 +150,20 @@ void protocol_controller::delete_sockets()
 
 void protocol_controller::authorize()
 {
+	configuration_.set_authorization_passed(false);
+	current_stage_ = message_received_type::hello_challenge;
 	//send initial message
 	tcp_server_socket_controller_->send_message(hello(configuration_.identification_name(), configuration_.id()).to_string());
 
 	while (!configuration_.authorization_passed())
 	{
 		const auto datagram = std::move(tcp_server_socket_controller_->receive());
-		consume(message_received_factory_.build_message(datagram.c_str(), datagram.size()));
+		if(datagram.first != -1)
+		{
+			auto *message = message_received_factory_.build_message(datagram.second.c_str(), datagram.second.size());
+			message->consume(*this);
+		}
+		boost::this_thread::interruption_point();
 	}
 }
 
@@ -150,6 +172,7 @@ void protocol_controller::wait_for_server_to_close_connection()
 	while (true)
 	{
 		tcp_server_socket_controller_->receive();
+		boost::this_thread::interruption_point();
 	}
 }
 
@@ -177,6 +200,11 @@ void protocol_controller::open_server_tcp_connection()
 
 std::string protocol_controller::calculate_md5(const std::string& input)
 {
-	return input; //TODO implement
+	char *array = new char[input.size() + 1 + configuration_.secret().size()];
+	memcpy(array, input.c_str(), input.size());
+	memcpy(array + input.size(), configuration_.secret().c_str(), configuration_.secret().size() + 1);
+	auto md5 = std::string(md5_calculator.digestString(array), 32);
+	delete[] array;
+	return md5;
 }
 

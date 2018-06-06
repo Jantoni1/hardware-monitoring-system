@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "configuration.h"
 #include <boost/spirit/include/classic_file_iterator.hpp>
 #include <fstream>
@@ -24,7 +23,7 @@ void configuration::parse_configuration()
 		input_stream.close();
 		throw e;
 	}
-	catch(boost::bad_lexical_cast &e) {
+	catch(boost::bad_lexical_cast &) {
 		input_stream.close();
 		throw std::runtime_error("Incorrect value in line: " + line);
 	}
@@ -107,14 +106,14 @@ void configuration::parse_to_ip_address(const std::string& ip) const
 	boost::split(numbers, ip, boost::is_any_of("."));
 	if(numbers.size() != 4)
 	{
-		throw std::runtime_error("The following IP address: " + ip + "in configuration file is incorrect.");
+		throw std::runtime_error("The following IP address: " + ip + " in configuration file is incorrect.");
 	}
 	for(auto& number : numbers)
 	{
 		const auto converted_number = boost::lexical_cast<int>(number);
 		if(converted_number < 0 || converted_number > 255)
 		{
-			throw std::runtime_error("The following IP address: " + ip + "in configuration file is incorrect.");
+			throw std::runtime_error("The following IP address: " + ip + " in configuration file is incorrect.");
 		}
 	}
 

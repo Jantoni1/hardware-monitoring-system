@@ -1,6 +1,4 @@
-#include "stdafx.h"
 #include "controllers/tcp_socket_controller.h"
-#pragma warning(disable:4996) //for using inet_addr()
 
 //#include <windows.h>
 #include <winsock2.h>
@@ -43,29 +41,34 @@ void tcp_socket_controller::initialize_protocol()
 	check_connection();
 }
 
-std::string tcp_socket_controller::receive() const
+std::pair<int, std::string> tcp_socket_controller::receive() const
 {
-	check_receive_result(recv(tcp_socket_, receive_buffer_, receive_buffer_length_, 0));
-	return std::string(receive_buffer_, receive_buffer_length_);
-//	shut_down_socket(tcp_socket_, SD_BOTH); //TODO use inside invoker's code
+	int res = check_receive_result(recv(tcp_socket_, receive_buffer_, receive_buffer_length_ * 10, 0));
+	return{ res, std::string(receive_buffer_, receive_buffer_length_) };
 }
 
-void tcp_socket_controller::check_receive_result(const int result) const
+int tcp_socket_controller::check_receive_result(const int result) const
 {
 	if(result == 0 && authorization_done_)
 	{
 		throw std::range_error("End of transmission");
 	}
 	if (result == 0 && !authorization_done_ || result < 0)
-		throw std::runtime_error("Protocol error, socket changed or client failed to authorize.");
+	{
+		if (WSAGetLastError() != WSAETIMEDOUT)
+		{
+			std::cout << WSAGetLastError() << std::endl;
+			throw std::runtime_error("Protocol error, socket changed or client failed to authorize.");
+		}
+		return -1;
+	}
+	return 0;
 }
 
 void tcp_socket_controller::shut_down_socket() const
 {
 	const auto result = shutdown(tcp_socket_, SD_BOTH);
 	clean_up();
-//	if(result == SOCKET_ERROR)
-//		throw std::runtime_error("Error on shutting down socket.");
 }
 
 void tcp_socket_controller::clean_up() const
@@ -109,6 +112,8 @@ void tcp_socket_controller::check_connection() const
 		WSACleanup();
 		throw std::runtime_error(std::string("socket failed with error: ") + std::to_string(WSAGetLastError()));
 	}
+	DWORD timeout = 1000;
+	setsockopt(tcp_socket_, SOL_SOCKET, SO_RCVTIMEO, (char*)&timeout, sizeof(timeout));
 }
 
 bool tcp_socket_controller::check_socket_error(const int status)
@@ -147,7 +152,4 @@ void tcp_socket_controller::send_message(std::string message) const
 		throw std::runtime_error(std::string("send failed with error: ") + std::to_string(WSAGetLastError()));
 	}
 }
-
-//TODO tutaj najwa¿niejszy element
-
 

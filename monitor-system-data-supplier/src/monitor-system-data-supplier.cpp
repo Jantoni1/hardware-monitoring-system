@@ -1,59 +1,42 @@
 // monitor-system-data-supplier.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-#include <iostream>
-#include "tcp_socket_controller.h"
-#include "protocol_controller.h"
-
-//TODO clear imports
-
-
-std::string parse_input_arguments(int argc, char **argv)
-{
-
-	if (argc != 2) {
-		throw std::runtime_error(std::string("usage: ") + std::string(argv[0]) + std::string(" <configuration_file_name>"));
-	}
-	return std::string(argv[1]);
-}
-
-protocol_controller create_controller(int argc, char **argv)
-{
-	protocol_controller controller;
-	if (argc == 2)
-	{
-		const auto configuration_file_path = std::move(parse_input_arguments(argc, argv));
-		controller.set_configuration(configuration_file_path);
-	}
-	else
-	{
-		controller.set_configuration();
-	}
-	return controller;
-}
+#include "thread_controller.h"
+#include <csignal>
+#include <boost/asio.hpp>
 
 int main(int argc, char **argv)
 {
-	while(true)
-	{
-		try
-		{
-			std::cout << "Starting connection." << std::endl << std::endl;
-			auto controller = std::move(create_controller(argc, argv));
-			controller.establish_connection();
-		}
-		catch (std::runtime_error& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
-		catch (std::exception&)
-		{
-			std::cout << " An error occured. Rebooting app" << std::endl << std::endl;
-		}
-		boost::this_thread::sleep_for(boost::chrono::seconds{ 1 });
-	}
 	
+	try
+	{
+		auto *ios_ptr = new boost::asio::io_service();
+		boost::asio::signal_set signals(*ios_ptr, SIGINT, SIGTERM);
+		std::shared_ptr<boost::asio::io_service> ios(ios_ptr);
+		thread_controller controller(argc, argv, ios);
+		signals.async_wait([&](boost::system::error_code const&, int) {
+			std::cout << "STOPPING..." << std::endl;
+			controller.join();
+		});
+		controller.run_connection_threads();
+		ios->run();
+		if(ios->stopped())
+		{
+			controller.join();
+		}
+	}
+	catch(std::runtime_error e)
+	{
+		std::cout << e.what();
+	}
+	catch (std::exception e)
+	{
+		std::cout << e.what();
+	}
+	catch(...)
+	{
+		std::cout << "Unknown error." << std::endl;
+	}
 	return 0;
 }
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "message_sent.h"
 #include <Winsock2.h>
 #include <iostream>

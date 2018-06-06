@@ -6,7 +6,7 @@
 class configuration
 {
 public:
-	configuration(const std::string configuration_file_name = std::string("config.cfg")) 
+	configuration() 
 		: id_(-1)
 		, identification_name_("undefined")
 		, id_from_server_(-1)
@@ -17,7 +17,7 @@ public:
 		, tcp_daemon_port_("7003")
 		, udp_server_ip_address_("127.0.0.1")
 		, udp_server_port_("7002")
-		, configuration_file_path_(configuration_file_name)
+		, configuration_file_path_("")
 
 	{}
 
@@ -122,6 +122,18 @@ public:
 		configuration_file_path_ = configuration_file_path;
 	}
 
+
+	std::string secret() const
+	{
+		return secret_;
+	}
+
+
+	void set_secret(const std::string& secret)
+	{
+		secret_ = secret;
+	}
+
 private:
 	void check_default_values_changed() const;
 	void parse_line(const std::string& line);
@@ -150,6 +162,8 @@ private:
 
 	std::string configuration_file_path_;
 
+	std::string secret_;
+
 	const std::unordered_map<std::string, std::function<void(std::string&)>> parser_map_ = 
 		{ { "identification_name",  std::bind(&configuration::set_identification_name, this, std::placeholders::_1)			}
 		, { "server_auth_ip"		 ,	std::bind(&configuration::set_tcp_server_ip_address, this, std::placeholders::_1)	}
@@ -159,6 +173,7 @@ private:
 		, { "server_data_ip"		 ,	std::bind(&configuration::set_udp_server_ip_address, this, std::placeholders::_1)	}
 		, { "server_data_port"	 ,	std::bind(&configuration::set_udp_server_port, this, std::placeholders::_1)				}
 		, { "id"				 ,	std::bind(&configuration::set_id_from_string, this, std::placeholders::_1)				}
+		, { "secret"			 ,  std::bind(&configuration::set_secret, this, std::placeholders::_1)						}		
 	};
 		 
 		 
