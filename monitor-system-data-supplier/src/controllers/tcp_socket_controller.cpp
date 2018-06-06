@@ -43,7 +43,7 @@ void tcp_socket_controller::initialize_protocol()
 
 std::pair<int, std::string> tcp_socket_controller::receive() const
 {
-	int res = check_receive_result(recv(tcp_socket_, receive_buffer_, receive_buffer_length_, 0));
+	int res = check_receive_result(recv(tcp_socket_, receive_buffer_, receive_buffer_length_ * 10, 0));
 	return{ res, std::string(receive_buffer_, receive_buffer_length_) };
 }
 
@@ -57,6 +57,7 @@ int tcp_socket_controller::check_receive_result(const int result) const
 	{
 		if (WSAGetLastError() != WSAETIMEDOUT)
 		{
+			std::cout << WSAGetLastError() << std::endl;
 			throw std::runtime_error("Protocol error, socket changed or client failed to authorize.");
 		}
 		return -1;

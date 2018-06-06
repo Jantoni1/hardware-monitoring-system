@@ -1,10 +1,12 @@
-#include "stdafx.h"
 #include "controllers/thread_controller.h"
 #include <csignal>
+#include <boost/asio/io_service.hpp>
 
-thread_controller::thread_controller(const int number_of_arguments, char** array)
+thread_controller::thread_controller(const int number_of_arguments, char** array, std::shared_ptr<boost::asio::io_service> &ios)
 	: number_of_arguments_(number_of_arguments)
 	, array_(array)
+	, connection_thread_(nullptr)
+	, ios_(ios)
 {
 
 }
@@ -47,7 +49,7 @@ void thread_controller::run_threads()
 			{
 				std::cout << "Shutting down application" << std::endl;
 				protocol_controller_.shut_down_threads();
-				return;
+				ios_->stop();
 			}
 			else
 			{

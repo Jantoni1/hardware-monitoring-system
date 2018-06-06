@@ -125,8 +125,14 @@ void protocol_controller::shut_down_connections()
 	{
 		udp_thread_->join();
 	}
-	tcp_daemon_socket_controller_->shut_down_socket();
-	tcp_server_socket_controller_->shut_down_socket();
+	if(tcp_daemon_socket_controller_ != nullptr)
+	{
+		tcp_daemon_socket_controller_->shut_down_socket();
+	}
+	if (tcp_server_socket_controller_ != nullptr)
+	{
+		tcp_server_socket_controller_->shut_down_socket();
+	}
 	delete_sockets();
 }
 

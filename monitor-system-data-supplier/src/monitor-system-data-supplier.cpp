@@ -7,25 +7,31 @@
 
 int main(int argc, char **argv)
 {
-	thread_controller controller(argc, argv);
+	
 	try
 	{
-		controller.run_connection_threads();
-		boost::asio::io_service ios;
-		boost::asio::signal_set signals(ios, SIGINT, SIGTERM);
+		auto *ios_ptr = new boost::asio::io_service();
+		boost::asio::signal_set signals(*ios_ptr, SIGINT, SIGTERM);
+		std::shared_ptr<boost::asio::io_service> ios(ios_ptr);
+		thread_controller controller(argc, argv, ios);
 		signals.async_wait([&](boost::system::error_code const&, int) {
 			std::cout << "STOPPING..." << std::endl;
 			controller.join();
 		});
-		ios.run();
+		controller.run_connection_threads();
+		ios->run();
+		if(ios->stopped())
+		{
+			controller.join();
+		}
 	}
-	catch(std::runtime_error &e)
+	catch(std::runtime_error e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << e.what();
 	}
-	catch (std::exception &e)
+	catch (std::exception e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << e.what();
 	}
 	catch(...)
 	{

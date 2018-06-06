@@ -106,14 +106,14 @@ void configuration::parse_to_ip_address(const std::string& ip) const
 	boost::split(numbers, ip, boost::is_any_of("."));
 	if(numbers.size() != 4)
 	{
-		throw std::runtime_error("The following IP address: " + ip + "in configuration file is incorrect.");
+		throw std::runtime_error("The following IP address: " + ip + " in configuration file is incorrect.");
 	}
 	for(auto& number : numbers)
 	{
 		const auto converted_number = boost::lexical_cast<int>(number);
 		if(converted_number < 0 || converted_number > 255)
 		{
-			throw std::runtime_error("The following IP address: " + ip + "in configuration file is incorrect.");
+			throw std::runtime_error("The following IP address: " + ip + " in configuration file is incorrect.");
 		}
 	}
 

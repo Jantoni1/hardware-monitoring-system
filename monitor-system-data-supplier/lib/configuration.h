@@ -6,7 +6,7 @@
 class configuration
 {
 public:
-	configuration(const std::string configuration_file_name = std::string("config.cfg")) 
+	configuration() 
 		: id_(-1)
 		, identification_name_("undefined")
 		, id_from_server_(-1)
@@ -17,7 +17,7 @@ public:
 		, tcp_daemon_port_("7003")
 		, udp_server_ip_address_("127.0.0.1")
 		, udp_server_port_("7002")
-		, configuration_file_path_(configuration_file_name)
+		, configuration_file_path_("")
 
 	{}
 
