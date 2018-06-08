@@ -107,6 +107,10 @@ void protocol_controller::udp_send_loop() const
 			boost::this_thread::interruption_point();
 		}
 	}
+	catch(std::exception &e)
+	{
+		std::cout << "Udp thread error: " << e.what() << std::endl;
+	}
 	catch(const boost::thread_interrupted &)
 	{
 	}
@@ -169,7 +173,7 @@ void protocol_controller::authorize()
 
 void protocol_controller::wait_for_server_to_close_connection()
 {
-	while (true)
+	while (!udp_thread_->timed_join(1))
 	{
 		tcp_server_socket_controller_->receive();
 		boost::this_thread::interruption_point();
